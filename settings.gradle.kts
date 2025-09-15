@@ -28,8 +28,9 @@ dependencyResolutionManagement {
     }
 }
 
+include(":shared")
+include(":designElements")
 include(":domain")
 include(":featureCharacterList")
 include(":featureCharacterDetail")
-include(":shared")
 include(":composeApp")

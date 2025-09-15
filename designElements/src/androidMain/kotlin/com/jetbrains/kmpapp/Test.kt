@@ -6,12 +6,12 @@ import androidx.compose.ui.tooling.preview.Preview
 
 //TODO Remove
 @Composable
-fun TestText(text: String) {
-    TestText2(text)
+fun TestText2(text: String) {
+    Text(text)
 }
 
 @Preview
 @Composable
 private fun Preview() {
-    TestText("Test")
+    TestText2("Test")
 }
