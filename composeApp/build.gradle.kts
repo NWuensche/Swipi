@@ -26,6 +26,7 @@ kotlin {
             implementation(libs.koin.androidx.compose)
             implementation(libs.coil.compose)
             implementation(projects.featureCharacterList)
+            implementation(projects.featureCharacterDetail)
 
             implementation(libs.coil.network.ktor)
         }

@@ -33,8 +33,6 @@ data class CharacterDetail(
      */
     val eyeColor: String?,
 
-    //The gender of this person. Either "Male", "Female" or "unknown", "n/a" if the person does not have a gender.
-
     /**
      * null if and only if unknown or n/a
      */

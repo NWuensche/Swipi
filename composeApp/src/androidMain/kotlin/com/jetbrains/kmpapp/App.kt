@@ -18,7 +18,7 @@ import kotlinx.serialization.Serializable
 object ListDestination
 
 @Serializable
-data class DetailDestination(val objectId: Int)
+data class DetailDestination(val characterId: Int)
 
 @Composable
 fun App() {
@@ -34,8 +34,8 @@ fun App() {
                     )
                 }
                 composable<DetailDestination> { backStackEntry ->
-                    DetailScreen(
-                        objectId = backStackEntry.toRoute<DetailDestination>().objectId,
+                    CharacterDetailScreen(
+                        characterId = backStackEntry.toRoute<DetailDestination>().characterId,
                         navigateBack = {
                             navController.popBackStack()
                         }

@@ -36,6 +36,7 @@ kotlin {
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
             implementation(projects.data)
+            implementation(projects.domain) //Need this for MiscIds
             implementation(libs.kotlinx.serialization.core)
         }
     }

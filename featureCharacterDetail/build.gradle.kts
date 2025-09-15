@@ -36,7 +36,7 @@ kotlin {
             implementation(compose.ui)
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
-            implementation(projects.data)
+            implementation(projects.domain) //TODO Double check who imports .data
             implementation(libs.kotlinx.serialization.core)
         }
     }
