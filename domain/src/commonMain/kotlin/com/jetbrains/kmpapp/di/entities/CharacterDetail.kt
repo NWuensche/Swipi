@@ -1,8 +1,10 @@
 package com.jetbrains.kmpapp.di.entities
 
-data class Character(
+data class CharacterDetail(
     val id: Int,
     val name: String,
+    val filmIDs: List<FilmId>,
+
     /**
      * null if and only if unknown
      */
@@ -13,4 +15,3 @@ data class Character(
      */
     val birthYear: String?
 )
-

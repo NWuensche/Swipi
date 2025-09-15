@@ -5,7 +5,7 @@ import com.jetbrains.kmpapp.di.mappers.toCharacter
 import com.jetbrains.kmpapp.http.IApiService
 import com.jetbrains.kmpapp.http.responseTypes.CharacterResponse
 
-class GetCharacterPagesUseCase(
+class GetCharacterPageUseCase(
     private val apiService: IApiService
 ): UseCase<Int, List<Character>> {
     override suspend fun execute(input: Int): List<Character> {

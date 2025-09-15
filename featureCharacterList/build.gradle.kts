@@ -20,6 +20,7 @@ kotlin {
 
     sourceSets {
         androidMain.dependencies {
+            implementation(libs.androidx.paging.compose)
             implementation(libs.androidx.compose.ui.tooling.preview)
             implementation(libs.androidx.activity.compose)
             implementation(libs.androidx.viewmodel.compose)
@@ -27,6 +28,7 @@ kotlin {
             implementation(libs.koin.androidx.compose)
             implementation(libs.coil.compose)
             implementation(projects.designElements)
+            implementation(projects.domain)
             implementation(libs.coil.network.ktor)
         }
         commonMain.dependencies {

@@ -1,12 +1,12 @@
 package com.jetbrains.kmpapp.di
 
 
-import com.jetbrains.kmpapp.di.useCases.GetCharacterPagesUseCase
+import com.jetbrains.kmpapp.di.useCases.GetCharacterPageUseCase
 import org.koin.dsl.module
 
 val domainModule = module {
     includes(dataModule)
     factory {
-        GetCharacterPagesUseCase(get())
+        GetCharacterPageUseCase(get())
     }
 }
