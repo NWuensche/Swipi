@@ -26,6 +26,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil3.compose.AsyncImage
+import com.jetbrains.kmpapp.TestText
 import com.jetbrains.kmpapp.data.MuseumObject
 import org.koin.androidx.compose.koinViewModel
 
@@ -33,7 +34,6 @@ import org.koin.androidx.compose.koinViewModel
 fun ListScreen(navigateToDetails: (objectId: Int) -> Unit) {
     val viewModel: ListViewModel = koinViewModel()
     val objects by viewModel.objects.collectAsStateWithLifecycle()
-
     AnimatedContent(objects.isNotEmpty()) { objectsAvailable ->
         if (objectsAvailable) {
             ObjectGrid(
@@ -58,6 +58,7 @@ private fun ObjectGrid(
         contentPadding = WindowInsets.safeDrawing.asPaddingValues(),
     ) {
         items(objects, key = { it.objectID }) { obj ->
+            TestText("Test")//TODO Remove
             ObjectFrame(
                 obj = obj,
                 onClick = { onObjectClick(obj.objectID) },

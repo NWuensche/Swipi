@@ -29,5 +29,6 @@ dependencyResolutionManagement {
 }
 
 include(":domain")
+include(":featureCharacterList")
 include(":shared")
 include(":composeApp")

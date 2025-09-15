@@ -3,13 +3,14 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
-    alias(libs.plugins.androidApplication)
     alias(libs.plugins.composeCompiler)
+    alias(libs.plugins.androidLibrary)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.kotlinxSerialization)
 }
 
 kotlin {
+
     androidTarget {
         @OptIn(ExperimentalKotlinGradlePluginApi::class)
         compilerOptions {
@@ -25,8 +26,6 @@ kotlin {
             implementation(libs.androidx.navigation.compose)
             implementation(libs.koin.androidx.compose)
             implementation(libs.coil.compose)
-            implementation(projects.featureCharacterList)
-
             implementation(libs.coil.network.ktor)
         }
         commonMain.dependencies {
@@ -36,40 +35,25 @@ kotlin {
             implementation(compose.ui)
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
-            implementation(projects.domain) //TODO Remove
-            implementation(projects.shared) //TODO Remove
+            implementation(projects.shared)
             implementation(libs.kotlinx.serialization.core)
         }
     }
 }
 
 android {
-    namespace = "com.jetbrains.kmpapp"
+    namespace = "com.jetbrains.kmpapp.shared"
     compileSdk = 35
-
-    defaultConfig {
-        applicationId = "com.jetbrains.kmpapp"
-        minSdk = 24
-        targetSdk = 35
-        versionCode = 1
-        versionName = "1.0"
-    }
-    packaging {
-        resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
-        }
-    }
-    buildTypes {
-        getByName("release") {
-            isMinifyEnabled = false
-        }
-    }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
+    }
+    defaultConfig {
+        minSdk = 24
     }
 }
 
 dependencies {
     debugImplementation(libs.androidx.compose.ui.tooling)
 }
+
