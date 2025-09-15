@@ -77,8 +77,11 @@ fun CharacterDetailScreen(
             LargeText("\uD83D\uDC41 " + characterDetail.eyeColor.toString())
             ItemSpacer()
             LargeText("\uD83E\uDDD1\uD83C\uDFFE " + characterDetail.skinColor.toString())
-            ItemSpacer()
-            HorizontalDivider(thickness = 2.dp)
+            HorizontalDivider(
+                modifier = Modifier
+                    .padding(vertical = 4.dp),
+                thickness = 2.dp
+            )
             VeryLargeText("Films") //TODO Strings
 
 
