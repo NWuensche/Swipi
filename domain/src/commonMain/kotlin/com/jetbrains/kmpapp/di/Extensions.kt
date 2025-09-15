@@ -13,3 +13,11 @@ internal val SwapiUrl.id: Int
         .split('/')
         .last { it.toIntOrNull() != null }
         .toInt()
+
+internal fun String.absentToNull(): String? {
+    return if (this == "unknown" || this == "n/a") {
+        null
+    } else {
+        this
+    }
+}

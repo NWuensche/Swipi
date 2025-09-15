@@ -11,8 +11,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
 import com.jetbrains.kmpapp.screens.DetailScreen
-import com.jetbrains.kmpapp.screens.ListScreen
-import com.jetbrains.kmpapp.vm.CharacterListScreen
+import com.jetbrains.kmpapp.screen.CharacterListScreen
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -30,13 +29,9 @@ fun App() {
             val navController = rememberNavController()
             NavHost(navController = navController, startDestination = ListDestination) {
                 composable<ListDestination> {
-
                     CharacterListScreen(
                         navigateToCharacter = {navController.navigate(DetailDestination(it))}
                     )
-                    /*ListScreen(navigateToDetails = { objectId ->
-                        navController.navigate(DetailDestination(objectId))
-                    })*/
                 }
                 composable<DetailDestination> { backStackEntry ->
                     DetailScreen(

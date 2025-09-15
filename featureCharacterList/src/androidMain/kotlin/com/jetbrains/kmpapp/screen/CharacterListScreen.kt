@@ -1,4 +1,4 @@
-package com.jetbrains.kmpapp.vm
+package com.jetbrains.kmpapp.screen
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.snapping.SnapPosition
@@ -19,10 +19,10 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.style.LineHeightStyle
 import androidx.compose.ui.unit.Density
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.jetbrains.kmpapp.cards.CharacterCard
+import com.jetbrains.kmpapp.vm.CharacterListViewModel
 import org.koin.androidx.compose.koinViewModel
 
 
@@ -54,7 +54,9 @@ fun CharacterListScreen(
         )
 
         Box(
-          modifier =  Modifier.padding(innerPadding).fillMaxSize()
+          modifier =  Modifier
+              .padding(innerPadding)
+              .fillMaxSize()
         ) {
             HorizontalPager(
                 modifier = Modifier.align(Alignment.Center), //Need box for align to be available

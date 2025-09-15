@@ -21,4 +21,12 @@ internal class ApiService(
         return httpClient.get("$baseUrl/people?page=$page").body<CharacterPageResponse>().results
     }
 
+    override suspend fun getCharacter(id: Int): CharacterResponse? {
+        return try {
+            httpClient.get("$baseUrl/people/$id").body()
+        } catch (e: Exception) {
+            null
+        }
+    }
+
 }

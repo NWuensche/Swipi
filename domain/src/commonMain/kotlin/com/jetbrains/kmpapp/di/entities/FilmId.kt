@@ -1,7 +1,11 @@
 package com.jetbrains.kmpapp.di.entities
 
-import kotlin.jvm.JvmInline
 
+sealed interface MiscId {
+    val id: Int
 
-@JvmInline
-value class FilmId(val id: String)
+    value class FilmId(override val id: Int): MiscId
+    data class VehicleId(override val id: Int): MiscId
+    data class StarshipId(override val id: Int): MiscId
+    data class SpeciesId(override val id: Int): MiscId
+}
