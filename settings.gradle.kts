@@ -30,5 +30,6 @@ dependencyResolutionManagement {
 
 include(":domain")
 include(":featureCharacterList")
+include(":featureCharacterDetail")
 include(":shared")
 include(":composeApp")
