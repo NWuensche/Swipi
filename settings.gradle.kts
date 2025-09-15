@@ -28,7 +28,7 @@ dependencyResolutionManagement {
     }
 }
 
-include(":shared")
+include(":data")
 include(":designElements")
 include(":domain")
 include(":featureCharacterList")

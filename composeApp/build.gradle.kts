@@ -37,7 +37,7 @@ kotlin {
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
             implementation(projects.domain) //TODO Remove
-            implementation(projects.shared) //TODO Remove
+            implementation(projects.data) //TODO Remove
             implementation(libs.kotlinx.serialization.core)
         }
     }
