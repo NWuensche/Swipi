@@ -11,10 +11,11 @@ import androidx.compose.ui.unit.dp
 
 
 @Composable
-fun StandardBodyText(text: String) {
+fun VeryLargeText(text: String) {
     Text(
         text = text,
-        style = MaterialTheme.typography.bodyLarge,
+        style = MaterialTheme.typography.headlineLarge,
+        fontWeight = FontWeight.Bold,
         modifier = Modifier.padding(bottom = 8.dp),
         maxLines = 1
     )
@@ -23,5 +24,5 @@ fun StandardBodyText(text: String) {
 @Preview
 @Composable
 private fun Preview() {
-    StandardBodyText("Test")
+    VeryLargeText("Test")
 }

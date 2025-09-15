@@ -68,7 +68,7 @@ fun CharacterListScreen(
                 val character = characterList[i] ?: return@HorizontalPager
                     CharacterCard(
                         modifier = Modifier
-                            .fillMaxHeight(0.5f)
+                            .fillMaxHeight(0.6f)
                             .fillMaxWidth(fraction = 0.8f) //Show other pages instead of the buttons to show swipe
                             .clickable {
                                 navigateToCharacter(character.id)

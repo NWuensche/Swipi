@@ -1,35 +1,29 @@
 package com.jetbrains.kmpapp
 
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.gestures.snapping.SnapPosition
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.pager.HorizontalPager
-import androidx.compose.foundation.pager.PagerDefaults
-import androidx.compose.foundation.pager.PagerSnapDistance
-import androidx.compose.foundation.pager.rememberPagerState
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.jetbrains.kmpapp.cards.CharacterCard
 import com.jetbrains.kmpapp.cards.RandomDarkPurple
 import com.jetbrains.kmpapp.iconButtons.BackIconButton
 import com.jetbrains.kmpapp.images.Circle
 import com.jetbrains.kmpapp.images.CircleTab
-import com.jetbrains.kmpapp.text.StandardBodyText
-import io.ktor.http.parametersOf
+import com.jetbrains.kmpapp.text.LargeText
+import com.jetbrains.kmpapp.text.VeryLargeText
 import org.koin.androidx.compose.koinViewModel
 import org.koin.core.parameter.parametersOf
 
@@ -67,10 +61,43 @@ fun CharacterDetailScreen(
         }
     ) { innerPadding ->
         Column (
-            modifier = Modifier.padding(innerPadding)
+            modifier = Modifier
+                .padding(innerPadding)
+                .padding(horizontal = 16.dp)
+                .padding(top = 16.dp)
         ) {
-            StandardBodyText(characterDetail.height.toString()) //TODO Update toString
-            StandardBodyText(characterDetail.mass.toString())
+            LargeText("\uD83D\uDCC5 " + characterDetail.birthYear.toString())
+            ItemSpacer()
+            LargeText("\uD83D\uDCCF " + characterDetail.height.toString()) //TODO Update toString
+            ItemSpacer()
+            LargeText("⚖ " + characterDetail.mass.toString())
+            ItemSpacer()
+            LargeText("\uD83E\uDDB1 " + characterDetail.hairColor.toString())
+            ItemSpacer()
+            LargeText("\uD83D\uDC41 " + characterDetail.eyeColor.toString())
+            ItemSpacer()
+            LargeText("\uD83E\uDDD1\uD83C\uDFFE " + characterDetail.skinColor.toString())
+            ItemSpacer()
+            HorizontalDivider(thickness = 2.dp)
+            VeryLargeText("Films") //TODO Strings
+
+
+            LazyRow {
+                items(characterDetail.filmIDs) {
+                    CircleTab(
+                        color = Color.RandomDarkPurple(it.id), //TODO Different color
+                        title = "F${it.id}",
+                        text = "Film ${it.id}"
+                    ) {
+                        viewModel.onItemClicked(it)
+                    }
+                }
+            }
         }
     }
+}
+
+@Composable
+private fun ItemSpacer() {
+    Spacer(modifier = Modifier.height(8.dp))
 }
