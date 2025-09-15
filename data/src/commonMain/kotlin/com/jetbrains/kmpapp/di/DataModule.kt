@@ -1,10 +1,5 @@
 package com.jetbrains.kmpapp.di
 
-import com.jetbrains.kmpapp.data.InMemoryMuseumStorage
-import com.jetbrains.kmpapp.data.KtorMuseumApi
-import com.jetbrains.kmpapp.data.MuseumApi
-import com.jetbrains.kmpapp.data.MuseumRepository
-import com.jetbrains.kmpapp.data.MuseumStorage
 import com.jetbrains.kmpapp.http.ApiService
 import com.jetbrains.kmpapp.http.IApiService
 import io.ktor.client.HttpClient
@@ -12,8 +7,6 @@ import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.http.ContentType
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
-import org.koin.core.context.startKoin
-import org.koin.core.module.Module
 import org.koin.dsl.module
 
 val dataModule = module {
@@ -29,24 +22,5 @@ val dataModule = module {
 
     single<IApiService> {
         ApiService(baseUrl = "https://swapi.py4e.com/api", httpClient = get())
-    }
-    single<MuseumApi> { KtorMuseumApi(get()) }
-    single<MuseumStorage> { InMemoryMuseumStorage() }
-    single {
-        MuseumRepository(get(), get()).apply {
-            initialize()
-        }
-    }
-}
-
-//TODO Remove
-fun initKoin() = initKoin(emptyList())
-
-fun initKoin(extraModules: List<Module>) {
-    startKoin {
-        modules(
-            dataModule,
-            *extraModules.toTypedArray(),
-        )
     }
 }

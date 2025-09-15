@@ -1,23 +1,18 @@
 package com.jetbrains.kmpapp
 
 import android.app.Application
-import com.jetbrains.kmpapp.di.initKoin
-import com.jetbrains.kmpapp.screens.DetailViewModel
 import featureCharacterDetailModule
 import featureCharacterListModule
-import org.koin.dsl.module
+import org.koin.core.context.startKoin
 
-class MuseumApp : Application() {
+class SwipiApp : Application() {
     override fun onCreate() {
         super.onCreate()
-        initKoin(
-            listOf(
+        startKoin {
+            modules(
                 featureCharacterListModule, //TODO Lazy
                 featureCharacterDetailModule,
-                module {
-                    factory { DetailViewModel(get()) }
-                }
             )
-        )
+        }
     }
 }

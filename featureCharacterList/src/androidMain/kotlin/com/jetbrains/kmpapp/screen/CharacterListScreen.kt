@@ -40,7 +40,7 @@ fun CharacterListScreen(
         topBar = {
             TopAppBar(
                 title = {
-                    Text("TODO")
+                    Text("SWIPI") //TODO Use App name
                 }
             )
         }

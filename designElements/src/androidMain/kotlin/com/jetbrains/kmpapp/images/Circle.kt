@@ -20,37 +20,21 @@ import androidx.compose.ui.unit.dp
 
 
 @Composable
-fun CircleTab(color: Color, title: String, text: String, onClick: () -> Unit) {
-    Column(
-        modifier = Modifier
-            .clickable { onClick() },
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        GradientCircle(color, title)
-        Text(text)
-    }
-}
+fun Circle(color: Color, text: String) {
 
-@Composable
-private fun GradientCircle(color: Color, text: String) {
-
-    val brush = Brush.linearGradient(listOf(color, Color.Black))
     Text(
         modifier = Modifier
-            .padding(32.dp)
-            .size(32.dp) //TODO Center Text
+            .padding(16.dp)
+            .size(16.dp) //TODO Center Text
             .drawBehind {
                 drawCircle(
-                    brush = brush,
-                    radius = this.size.maxDimension - 8
-                )
-                drawCircle(
-                    color = Color.White,
-                    style = Stroke(width = 4f),
+                    color = color,
                     radius = this.size.maxDimension
                 )
             },
+        color = Color.White,
         textAlign = TextAlign.Center,
+        style = MaterialTheme.typography.bodySmall,
         text = text
     )
 }
@@ -59,11 +43,9 @@ private fun GradientCircle(color: Color, text: String) {
 @Composable
 private fun Preview() {
     MaterialTheme(colorScheme = darkColorScheme()) {
-        CircleTab(
+        Circle(
             color = Color.Blue,
-            title = "F1",
-            text = "Film 1",
-            onClick = {}
+            text = "F1",
         )
     }
 }

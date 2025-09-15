@@ -4,6 +4,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.snapping.SnapPosition
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -20,8 +21,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.jetbrains.kmpapp.cards.CharacterCard
+import com.jetbrains.kmpapp.cards.RandomDarkPurple
+import com.jetbrains.kmpapp.iconButtons.BackIconButton
+import com.jetbrains.kmpapp.images.Circle
+import com.jetbrains.kmpapp.images.CircleTab
 import com.jetbrains.kmpapp.text.StandardBodyText
 import io.ktor.http.parametersOf
 import org.koin.androidx.compose.koinViewModel
@@ -42,8 +48,20 @@ fun CharacterDetailScreen(
     Scaffold(
         topBar = {
             TopAppBar(
+                navigationIcon = {
+                    BackIconButton(onClick = navigateBack)
+                },
                 title = {
-                    Text(characterDetail.name) //TODO Use circle
+                    Row (
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Circle(
+                            color = Color.RandomDarkPurple(characterId),
+                            text = "C$characterId"
+                        )
+                        Text(characterDetail.name)
+                    }
+
                 }
             )
         }
