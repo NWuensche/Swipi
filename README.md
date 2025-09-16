@@ -6,7 +6,7 @@ SWIPI is grouping the data by characters. You can swipe through them (hence the 
 
 By compiling and running this app, you accept to send your IP to https://swapi.py4e.com/ .
 
-Shoutouts to ShyFoundry for the great SF Distant Galaxy font: https://www.fontspace.com/sf-distant-galaxy-font-f6436 .
+Shout outs to ShyFoundry for the great SF Distant Galaxy font: https://www.fontspace.com/sf-distant-galaxy-font-f6436 .
 
 The app is build upon the official [KMP App Templative Native](https://github.com/Kotlin/KMP-App-Template-Native) template.
 
