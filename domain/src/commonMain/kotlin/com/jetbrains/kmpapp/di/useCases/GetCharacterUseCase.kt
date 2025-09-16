@@ -10,7 +10,7 @@ import com.jetbrains.kmpapp.http.responseTypes.CharacterResponse
 class GetCharacterUseCase(
     private val apiService: IApiService
 ): UseCase<Int, CharacterDetail?> {
-    override suspend fun execute(input: Int): CharacterDetail? {
+    override suspend fun execute(input: Int): CharacterDetail? { //TODO Make main safe
         return apiService
             .getCharacter(id = input)
             ?.let(CharacterResponse::toCharacterDetail)

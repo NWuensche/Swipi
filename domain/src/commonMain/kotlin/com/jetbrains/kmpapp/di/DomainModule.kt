@@ -3,6 +3,7 @@ package com.jetbrains.kmpapp.di
 
 import com.jetbrains.kmpapp.di.useCases.GetCharacterPageUseCase
 import com.jetbrains.kmpapp.di.useCases.GetCharacterUseCase
+import com.jetbrains.kmpapp.di.useCases.GetContentUseCase
 import org.koin.dsl.module
 
 val domainModule = module {
@@ -12,5 +13,8 @@ val domainModule = module {
     }
     factory {
         GetCharacterUseCase(get())
+    }
+    factory {
+        GetContentUseCase(get())
     }
 }

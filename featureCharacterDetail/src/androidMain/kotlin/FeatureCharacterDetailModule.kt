@@ -6,6 +6,6 @@ import org.koin.dsl.module
 val featureCharacterDetailModule = module {
     includes(domainModule)
     viewModel { param ->
-        CharacterDetailViewModel(characterId = param.get(), get())
+        CharacterDetailViewModel(characterId = param.get(), get(), get())
     }
 }

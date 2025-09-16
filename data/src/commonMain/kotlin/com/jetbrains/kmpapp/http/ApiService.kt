@@ -33,8 +33,8 @@ internal class ApiService(
 
     override suspend fun getFilm(id: Int): FilmResponse? {
         return try {
-            httpClient.get("$baseUrl/film/$id").body()
-        } catch (_: Exception) {
+            httpClient.get("$baseUrl/films/$id").body()
+        } catch (e: Exception) {
             null
         }
     }
@@ -49,7 +49,7 @@ internal class ApiService(
 
     override suspend fun getVehicle(id: Int): VehicleResponse? {
         return try {
-            httpClient.get("$baseUrl/vehicle/$id").body()
+            httpClient.get("$baseUrl/vehicles/$id").body()
         } catch (_: Exception) {
             null
         }
@@ -57,7 +57,7 @@ internal class ApiService(
 
     override suspend fun getStarship(id: Int): StarshipResponse? {
         return try {
-            httpClient.get("$baseUrl/starship/$id").body()
+            httpClient.get("$baseUrl/starships/$id").body()
         } catch (_: Exception) {
             null
         }

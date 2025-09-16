@@ -3,30 +3,37 @@ package com.jetbrains.kmpapp
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.jetbrains.kmpapp.di.entities.CharacterDetail
+import com.jetbrains.kmpapp.di.entities.Content
 import com.jetbrains.kmpapp.di.entities.ContentId
 import com.jetbrains.kmpapp.di.useCases.GetCharacterUseCase
+import com.jetbrains.kmpapp.di.useCases.GetContentUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
 sealed interface BottomSheetState {
     object Loading: BottomSheetState
-    data class Content(
-        val title: String,
-        val info1: String,
-        val info2: String,
-        val info3: String,
-        val info4: String
-    )
+    object Error: BottomSheetState
+    data class ContentView(
+        val content: Content
+    ): BottomSheetState
 }
 
 class CharacterDetailViewModel(
     characterId: Int,
-    getCharacterUseCase: GetCharacterUseCase
+    getCharacterUseCase: GetCharacterUseCase,
+    private val getContentUseCase: GetContentUseCase
 ): ViewModel() {
     //TODO private
     private val _characterDetail = MutableStateFlow<CharacterDetail?>(null)
     val characterDetail: StateFlow<CharacterDetail?> = _characterDetail
+
+    private val _bottomSheetState = MutableStateFlow<BottomSheetState?>(null)
+
+    /**
+     * null means bottom sheet is dismissed
+     */
+    val bottomSheetState: StateFlow<BottomSheetState?> = _bottomSheetState
 
     init {
         viewModelScope.launch {
@@ -35,6 +42,17 @@ class CharacterDetailViewModel(
     }
 
     fun onItemClicked(id: ContentId) {
-        TODO()
+        _bottomSheetState.value = BottomSheetState.Loading
+
+        viewModelScope.launch {
+            val content = getContentUseCase.execute(id)
+
+            _bottomSheetState.value = content?.let(BottomSheetState::ContentView)
+                ?: BottomSheetState.Error
+        }
+    }
+
+    fun onBottomSheetDismiss() {
+        _bottomSheetState.value = null
     }
 }

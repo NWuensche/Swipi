@@ -7,7 +7,7 @@ import kotlinx.serialization.Serializable
 data class FilmResponse(
     val title: String,
     @SerialName("episode_id")
-    val episodeId: String,
+    val episodeId: Int,
     val director: String,
     val producer: String,
     @SerialName("release_date")
