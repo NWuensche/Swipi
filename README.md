@@ -10,6 +10,11 @@ Shout outs to ShyFoundry for the great SF Distant Galaxy font: https://www.fonts
 
 The app is build upon the official [KMP App Templative Native](https://github.com/Kotlin/KMP-App-Template-Native) template.
 
+https://github.com/user-attachments/assets/cd6c5d7c-eee1-49e3-bfd7-e5bf477d6981
+
+
+
+
 
 ## Technologies
 
