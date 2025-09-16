@@ -48,7 +48,7 @@ data class CharacterResponse(
     val filmUrls: List<SwapiUrl>,
 
     @SerialName("species")
-    val specieUrls: List<SwapiUrl>,
+    val speciesUrls: List<SwapiUrl>,
 
     @SerialName("starships")
     val starshipUrls: List<SwapiUrl>,

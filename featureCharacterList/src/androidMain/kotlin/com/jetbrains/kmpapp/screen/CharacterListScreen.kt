@@ -69,7 +69,7 @@ fun CharacterListScreen(
                     CharacterCard(
                         modifier = Modifier
                             .fillMaxHeight(0.6f)
-                            .fillMaxWidth(fraction = 0.8f) //Show other pages instead of the buttons to show swipe
+                            .fillMaxWidth(fraction = 0.9f) //Show other pages instead of the buttons to show swipe
                             .clickable {
                                 navigateToCharacter(character.id)
                             },
@@ -90,6 +90,6 @@ private val threePagesPerViewport = object : PageSize {
         availableSpace: Int,
         pageSpacing: Int
     ): Int {
-        return ((availableSpace - 2 * pageSpacing) / 1.4).toInt() // Show 20% of the previous and next page
+        return ((availableSpace - 2 * pageSpacing) / 1.4).toInt() // Show part of the previous and next page
     }
 }

@@ -22,11 +22,7 @@ internal fun CharacterResponse.toCharacter(): Character {
         id = url.id,
         name = name,
         height = height.toIntOrNull(),
-        birthYear = if (birthYear != "unknown") {
-            birthYear
-        } else {
-            null
-        },
+        birthYear = birthYear.absentToNull()
     )
 }
 
@@ -44,7 +40,7 @@ internal fun CharacterResponse.toCharacterDetail(): CharacterDetail {
         filmIDs = filmUrls
             .map(String::id)
             .map(::FilmId),
-        speciesIds = specieUrls
+        speciesIds = speciesUrls
             .map(String::id)
             .map(::SpeciesId),
         vehicleIds = vehicleUrls
