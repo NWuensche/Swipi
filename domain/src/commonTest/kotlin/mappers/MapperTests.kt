@@ -32,7 +32,7 @@ class MapperTests {
             Character(
                 id = 1,
                 name = "C",
-                heightText = 123,
+                heightText = "123 cm",
                 birthYearText = "345 BYD"
             ),
             character
@@ -57,14 +57,14 @@ class MapperTests {
             vehicleUrls = emptyList()
         )
 
-        val character = mockCharacterResponse.toC1haracter()
+        val character = mockCharacterResponse.toCharacter()
 
         assertEquals(
             Character(
                 id = 1,
                 name = "C",
-                heightText = null,
-                birthYearText = null
+                heightText = "Find out yourself!",
+                birthYearText = "Find out yourself!"
             ),
             character
         )
