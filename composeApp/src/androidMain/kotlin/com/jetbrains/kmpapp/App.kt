@@ -20,7 +20,7 @@ object ListDestination
 data class DetailDestination(val characterId: Int)
 
 @Composable
-fun App() {
+fun App(onLicensesButtonPressed: () -> Unit) {
     MaterialTheme(
         colorScheme = if (isSystemInDarkTheme()) darkColorScheme() else lightColorScheme()
     ) {
@@ -29,7 +29,8 @@ fun App() {
             NavHost(navController = navController, startDestination = ListDestination) {
                 composable<ListDestination> {
                     CharacterListScreen(
-                        navigateToCharacter = {navController.navigate(DetailDestination(it))}
+                        navigateToCharacter = {navController.navigate(DetailDestination(it))},
+                        onLicensesButtonPressed = onLicensesButtonPressed
                     )
                 }
                 composable<DetailDestination> { backStackEntry ->

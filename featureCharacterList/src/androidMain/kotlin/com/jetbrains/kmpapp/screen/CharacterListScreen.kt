@@ -3,6 +3,8 @@ package com.jetbrains.kmpapp.screen
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.snapping.SnapPosition
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -12,7 +14,11 @@ import androidx.compose.foundation.pager.PageSize
 import androidx.compose.foundation.pager.PagerDefaults
 import androidx.compose.foundation.pager.PagerSnapDistance
 import androidx.compose.foundation.pager.rememberPagerState
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Info
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -22,6 +28,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Density
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.jetbrains.kmpapp.cards.CharacterCard
+import com.jetbrains.kmpapp.iconButtons.InfoIconButton
 import com.jetbrains.kmpapp.vm.CharacterListViewModel
 import org.koin.androidx.compose.koinViewModel
 
@@ -31,6 +38,7 @@ import org.koin.androidx.compose.koinViewModel
 @Composable
 fun CharacterListScreen(
     navigateToCharacter: (id: Int) -> Unit,
+    onLicensesButtonPressed: () -> Unit,
     viewModel: CharacterListViewModel = koinViewModel()
 ) {
 
@@ -40,7 +48,11 @@ fun CharacterListScreen(
         topBar = {
             TopAppBar(
                 title = {
-                    Text("SWIPI") //TODO Use App name
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Text("SWIPI") //TODO Use App name
+                        Spacer(modifier = Modifier.weight(1f))
+                        InfoIconButton(onClick = onLicensesButtonPressed)
+                    }
                 }
             )
         }

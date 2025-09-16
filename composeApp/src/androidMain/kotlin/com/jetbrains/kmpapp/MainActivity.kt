@@ -1,11 +1,15 @@
 package com.jetbrains.kmpapp
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.ui.platform.LocalContext
+import androidx.core.content.ContextCompat
+import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -16,7 +20,16 @@ class MainActivity : ComponentActivity() {
             LaunchedEffect(isSystemInDarkTheme()) {
                 enableEdgeToEdge()
             }
-            App()
+            App (
+                onLicensesButtonPressed = {
+                    startActivity(
+                        Intent(
+                            this@MainActivity,
+                            OssLicensesMenuActivity::class.java
+                        )
+                    )
+                }
+            )
         }
     }
 }

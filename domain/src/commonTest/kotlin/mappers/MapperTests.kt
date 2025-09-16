@@ -57,7 +57,7 @@ class MapperTests {
             vehicleUrls = emptyList()
         )
 
-        val character = mockCharacterResponse.toCharacter()
+        val character = mockCharacterResponse.toC1haracter()
 
         assertEquals(
             Character(

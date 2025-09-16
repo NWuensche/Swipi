@@ -7,6 +7,7 @@ plugins {
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.kotlinxSerialization)
+    id("com.google.android.gms.oss-licenses-plugin")
 }
 
 kotlin {
@@ -27,7 +28,7 @@ kotlin {
             implementation(libs.coil.compose)
             implementation(projects.featureCharacterList)
             implementation(projects.featureCharacterDetail)
-
+            implementation(libs.play.services.oss.licenses)
             implementation(libs.coil.network.ktor)
         }
         commonMain.dependencies {
@@ -52,11 +53,6 @@ android {
         targetSdk = 35
         versionCode = 1
         versionName = "1.0"
-    }
-    packaging {
-        resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
-        }
     }
     buildTypes {
         getByName("release") {
