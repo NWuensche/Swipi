@@ -22,7 +22,7 @@ data class DetailDestination(val characterId: Int)
 @Composable
 fun App(onLicensesButtonPressed: () -> Unit) {
     MaterialTheme(
-        colorScheme = if (isSystemInDarkTheme()) darkColorScheme() else lightColorScheme()
+        colorScheme = darkColorScheme() //It's Star Wars, we always want the dark side!
     ) {
         Surface {
             val navController = rememberNavController()
@@ -30,7 +30,7 @@ fun App(onLicensesButtonPressed: () -> Unit) {
                 composable<ListDestination> {
                     CharacterListScreen(
                         sfFontFamily = sfFont,
-                        navigateToCharacter = {navController.navigate(DetailDestination(it))},
+                        navigateToCharacter = { navController.navigate(DetailDestination(it)) },
                         onLicensesButtonPressed = onLicensesButtonPressed
                     )
                 }
