@@ -4,7 +4,7 @@ import androidx.compose.ui.graphics.Color
 import kotlin.random.Random
 
 private val darkPurples by lazy {
-    listOf (
+    listOf(
         Color(0xFF673AB7),
         Color(0xFF3916A4),
         Color(0xFF190E4F),
@@ -14,7 +14,7 @@ private val darkPurples by lazy {
 }
 
 private val darkGreens by lazy {
-    listOf (
+    listOf(
         Color(0xFF054D0A),
         Color(0xFF1F9424),
         Color(0xFF1C6E1E),
@@ -24,7 +24,7 @@ private val darkGreens by lazy {
 }
 
 private val darkReds by lazy {
-    listOf (
+    listOf(
         Color(0xFF4B0202),
         Color(0xFF832929),
         Color(0xFF341010),

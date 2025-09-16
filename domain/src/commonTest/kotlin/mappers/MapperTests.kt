@@ -10,21 +10,21 @@ import kotlin.test.assertEquals
 class MapperTests {
     @Test
     fun `character response to character without missing values works`() {
-       val mockCharacterResponse = CharacterResponse(
-           url = "url/1/",
-           name = "C",
-           height = "123",
-           mass = "234",
-           skinColor = "black",
-           eyeColor = "blue",
-           hairColor = "blond",
-           gender = "Male",
-           birthYear = "345 BYD",
-           filmUrls = emptyList(),
-           speciesUrls = emptyList(),
-           starshipUrls = emptyList(),
-           vehicleUrls = emptyList()
-       )
+        val mockCharacterResponse = CharacterResponse(
+            url = "url/1/",
+            name = "C",
+            height = "123",
+            mass = "234",
+            skinColor = "black",
+            eyeColor = "blue",
+            hairColor = "blond",
+            gender = "Male",
+            birthYear = "345 BYD",
+            filmUrls = emptyList(),
+            speciesUrls = emptyList(),
+            starshipUrls = emptyList(),
+            vehicleUrls = emptyList()
+        )
 
         val character = mockCharacterResponse.toCharacter()
 

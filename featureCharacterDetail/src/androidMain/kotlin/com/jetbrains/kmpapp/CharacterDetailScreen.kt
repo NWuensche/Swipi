@@ -67,10 +67,12 @@ fun CharacterDetailScreen(
                 BottomSheetState.Loading -> CircularProgressIndicator(
                     modifier = Modifier.align(Alignment.CenterHorizontally)
                 )
+
                 BottomSheetState.Error -> StandardBodyText(
                     modifier = Modifier.align(Alignment.CenterHorizontally),
                     text = "Error while loading item, please reload!"
                 )
+
                 is BottomSheetState.ContentView -> ContentView(
                     title = bottomSheetState.content.name,
                     infoTopLeft = bottomSheetState.content.info1,
@@ -101,7 +103,7 @@ fun CharacterDetailScreen(
                     BackIconButton(onClick = navigateBack)
                 },
                 title = {
-                    Row (
+                    Row(
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Circle(
@@ -141,8 +143,11 @@ fun CharacterDetailScreen(
 
 
 @Composable
-private fun CharacterContent(characterDetail: CharacterDetail, onItemClick: (id: ContentId) -> Unit) {
-    Column (
+private fun CharacterContent(
+    characterDetail: CharacterDetail,
+    onItemClick: (id: ContentId) -> Unit
+) {
+    Column(
         modifier = Modifier
             .fillMaxSize()
             .verticalScroll(state = rememberScrollState())
@@ -243,6 +248,7 @@ private fun CharacterContent(characterDetail: CharacterDetail, onItemClick: (id:
         }
     }
 }
+
 @Composable
 private fun ItemSpacer() {
     Spacer(modifier = Modifier.height(8.dp))

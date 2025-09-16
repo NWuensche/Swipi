@@ -9,7 +9,7 @@ import kotlinx.coroutines.withContext
 
 class GetCharacterPageUseCase(
     private val apiService: IApiService
-): UseCase<Int, List<Character>> {
+) : UseCase<Int, List<Character>> {
     override suspend fun execute(input: Int): List<Character> = withContext(Dispatchers.Default) {
         apiService
             .getCharactersPage(page = input)

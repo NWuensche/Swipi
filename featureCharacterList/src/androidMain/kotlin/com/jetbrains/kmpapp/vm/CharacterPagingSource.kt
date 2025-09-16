@@ -18,7 +18,8 @@ internal class CharacterPagingSource(
     }
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Character> {
-        val firstKey = params.key ?: STARTING_KEY // If null, then loading first time -> Start with STARTING_KEY
+        val firstKey = params.key
+            ?: STARTING_KEY // If null, then loading first time -> Start with STARTING_KEY
 
         val pageNumbersToLoad = firstKey.until(firstKey + params.loadSize)
 
@@ -26,7 +27,7 @@ internal class CharacterPagingSource(
             pageNumbersToLoad.flatMap {
                 getCharacterPageUseCase.execute(it)
             }
-        } catch(e: Exception) {
+        } catch (e: Exception) {
             return LoadResult.Error(e)
         }
 

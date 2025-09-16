@@ -14,7 +14,7 @@ import kotlinx.coroutines.flow.StateFlow
 
 class CharacterListViewModel(
     private val getCharacterPageUseCase: GetCharacterPageUseCase
-): ViewModel() {
+) : ViewModel() {
     private companion object {
         const val PAGE_SIZE = 1
     }

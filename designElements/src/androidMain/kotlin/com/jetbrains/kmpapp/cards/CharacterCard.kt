@@ -5,7 +5,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.tooling.preview.Preview
 import com.jetbrains.kmpapp.images.LargePortrait
 import com.jetbrains.kmpapp.randomDarkPurple
 import com.jetbrains.kmpapp.text.SFTitleText
@@ -30,7 +29,7 @@ fun CharacterCard(
             text = "C$id"
         )
 
-        SFTitleText(font= titleFontFamily, name)
+        SFTitleText(font = titleFontFamily, name)
 
         StandardBodyText("\uD83D\uDCC5 $birthYear")
         StandardBodyText("\uD83D\uDCCF $height")

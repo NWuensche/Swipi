@@ -14,7 +14,7 @@ import io.ktor.client.request.get
 internal class ApiService(
     private val baseUrl: String,
     private val httpClient: HttpClient
-): IApiService {
+) : IApiService {
 
     /**
      * Page starts at 1

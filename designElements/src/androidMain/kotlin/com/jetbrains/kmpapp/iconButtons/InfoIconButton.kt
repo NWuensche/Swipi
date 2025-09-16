@@ -17,5 +17,5 @@ fun InfoIconButton(onClick: () -> Unit) {
 @Preview
 @Composable
 private fun Preview() {
-    InfoIconButton {  }
+    InfoIconButton { }
 }

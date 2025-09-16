@@ -2,8 +2,6 @@ package com.jetbrains.kmpapp
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.jetbrains.kmpapp.di.entities.CharacterDetail
-import com.jetbrains.kmpapp.di.entities.Content
 import com.jetbrains.kmpapp.di.entities.ContentId
 import com.jetbrains.kmpapp.di.useCases.GetCharacterUseCase
 import com.jetbrains.kmpapp.di.useCases.GetContentUseCase
@@ -18,8 +16,9 @@ class CharacterDetailViewModel(
     private val characterId: Int,
     private val getCharacterUseCase: GetCharacterUseCase,
     private val getContentUseCase: GetContentUseCase
-): ViewModel() {
-    private val _characterDetailState = MutableStateFlow<CharacterDetailState>(CharacterDetailState.Loading)
+) : ViewModel() {
+    private val _characterDetailState =
+        MutableStateFlow<CharacterDetailState>(CharacterDetailState.Loading)
     val characterDetailState: StateFlow<CharacterDetailState> = _characterDetailState
 
     private val _bottomSheetState = MutableStateFlow<BottomSheetState?>(null)
