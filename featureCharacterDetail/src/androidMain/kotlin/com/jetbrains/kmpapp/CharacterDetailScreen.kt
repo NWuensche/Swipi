@@ -22,12 +22,12 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.pulltorefresh.PullToRefreshBox
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.jetbrains.kmpapp.di.entities.CharacterDetail
@@ -37,6 +37,7 @@ import com.jetbrains.kmpapp.iconButtons.RefreshIconButton
 import com.jetbrains.kmpapp.images.Circle
 import com.jetbrains.kmpapp.images.CircleTab
 import com.jetbrains.kmpapp.text.LargeText
+import com.jetbrains.kmpapp.text.SFTitleText
 import com.jetbrains.kmpapp.text.StandardBodyText
 import com.jetbrains.kmpapp.text.VeryLargeText
 import com.jetbrains.kmpapp.views.ContentView
@@ -47,6 +48,7 @@ import org.koin.core.parameter.parametersOf
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CharacterDetailScreen(
+    sfFontfamily: FontFamily,
     characterId: Int,
     navigateBack: () -> Unit,
     viewModel: CharacterDetailViewModel = koinViewModel { parametersOf(characterId) }
@@ -105,7 +107,10 @@ fun CharacterDetailScreen(
                             color = Color.randomDarkPurple(characterId),
                             text = "C$characterId"
                         )
-                        Text((characterDetail as? CharacterDetailState.CharacterDetailView)?.characterDetail?.name.orEmpty())
+                        SFTitleText(
+                            font = sfFontfamily,
+                            text = (characterDetail as? CharacterDetailState.CharacterDetailView)?.characterDetail?.name.orEmpty()
+                        )
                         Spacer(modifier = Modifier.weight(1f))
                         RefreshIconButton(onClick = viewModel::onRefresh)
                     }

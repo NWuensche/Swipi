@@ -29,12 +29,14 @@ fun App(onLicensesButtonPressed: () -> Unit) {
             NavHost(navController = navController, startDestination = ListDestination) {
                 composable<ListDestination> {
                     CharacterListScreen(
+                        sfFontFamily = sfFont,
                         navigateToCharacter = {navController.navigate(DetailDestination(it))},
                         onLicensesButtonPressed = onLicensesButtonPressed
                     )
                 }
                 composable<DetailDestination> { backStackEntry ->
                     CharacterDetailScreen(
+                        sfFontfamily = sfFont,
                         characterId = backStackEntry.toRoute<DetailDestination>().characterId,
                         navigateBack = {
                             navController.popBackStack()

@@ -4,6 +4,7 @@ import androidx.compose.material3.ElevatedCard
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.tooling.preview.Preview
 import com.jetbrains.kmpapp.images.LargePortrait
 import com.jetbrains.kmpapp.randomDarkPurple
@@ -17,6 +18,7 @@ fun CharacterCard(
     name: String,
     birthYear: String,
     height: Int,
+    titleFontFamily: FontFamily,
     modifier: Modifier = Modifier
 ) {
     ElevatedCard(
@@ -28,13 +30,14 @@ fun CharacterCard(
             text = "C$id"
         )
 
-        SFTitleText(name)
+        SFTitleText(font= titleFontFamily, name)
 
         StandardBodyText("\uD83D\uDCC5 $birthYear")
         StandardBodyText("\uD83D\uDCCF $height") //TODO add cm
     }
 }
 
+/*
 @Preview
 @Composable
 private fun Preview() {
@@ -44,4 +47,4 @@ private fun Preview() {
         birthYear = "123 BYD",
         height = 150
     )
-}
+}*/
