@@ -76,7 +76,7 @@ internal fun VehicleResponse.toContent(): Content {
     return Content(
         name = this.name,
         info1 = "Model: ${this.model}",
-        info2 = "Length: ${this.length}",
+        info2 = "Length: ${this.length}m",
         info3 = "Class: ${this.vehicleClass}",
         info4 = "Producer: ${this.manufacturer}"
     )
@@ -86,7 +86,7 @@ internal fun StarshipResponse.toContent(): Content {
     return Content(
         name = this.name,
         info1 = "Model: ${this.model}",
-        info2 = "Length: ${this.length}",
+        info2 = "Length: ${this.length}m",
         info3 = "Class: ${this.starshipClass}",
         info4 = "Producer: ${this.manufacturer}"
     )

@@ -15,7 +15,7 @@ internal val SwapiUrl.id: Int
         .toInt()
 
 internal fun String.absentToNull(): String? {
-    return if (this == "unknown" || this == "n/a") {
+    return if (this == "unknown" || this == "n/a" || this == "none") {
         null
     } else {
         this

@@ -88,7 +88,7 @@ fun CharacterListScreen(
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         Text("SWIPI") //TODO Use App name
                         Spacer(modifier = Modifier.weight(1f))
-                        RefreshIconButton(onClick = {viewModel.reload()})
+                        RefreshIconButton(onClick = viewModel::reload)
                         InfoIconButton(onClick = onLicensesButtonPressed)
                     }
                 }

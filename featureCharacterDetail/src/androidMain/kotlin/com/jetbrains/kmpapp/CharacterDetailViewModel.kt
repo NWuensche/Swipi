@@ -12,6 +12,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
+//TODO Move
 sealed interface BottomSheetState {
     object Loading: BottomSheetState
     object Error: BottomSheetState
@@ -20,14 +21,22 @@ sealed interface BottomSheetState {
     ): BottomSheetState
 }
 
+sealed interface CharacterDetailState {
+    object Loading: CharacterDetailState
+    object Error: CharacterDetailState
+    data class CharacterDetailView(
+        val characterDetail: CharacterDetail
+    ): CharacterDetailState
+}
+
 class CharacterDetailViewModel(
-    characterId: Int,
-    getCharacterUseCase: GetCharacterUseCase,
+    private val characterId: Int,
+    private val getCharacterUseCase: GetCharacterUseCase,
     private val getContentUseCase: GetContentUseCase
 ): ViewModel() {
     //TODO private
-    private val _characterDetail = MutableStateFlow<CharacterDetail?>(null)
-    val characterDetail: StateFlow<CharacterDetail?> = _characterDetail
+    private val _characterDetailState = MutableStateFlow<CharacterDetailState>(CharacterDetailState.Loading)
+    val characterDetailState: StateFlow<CharacterDetailState> = _characterDetailState
 
     private val _bottomSheetState = MutableStateFlow<BottomSheetState?>(null)
 
@@ -37,9 +46,7 @@ class CharacterDetailViewModel(
     val bottomSheetState: StateFlow<BottomSheetState?> = _bottomSheetState
 
     init {
-        viewModelScope.launch {
-            _characterDetail.value = getCharacterUseCase.execute(characterId)
-        }
+        onRefresh()
     }
 
     /**
@@ -59,6 +66,15 @@ class CharacterDetailViewModel(
 
             _bottomSheetState.value = content?.let(BottomSheetState::ContentView)
                 ?: BottomSheetState.Error
+        }
+    }
+
+    fun onRefresh() {
+        viewModelScope.launch {
+            _characterDetailState.value = CharacterDetailState.Loading
+            _characterDetailState.value = getCharacterUseCase.execute(characterId)
+                ?.let(CharacterDetailState::CharacterDetailView)
+                ?: CharacterDetailState.Error
         }
     }
 
