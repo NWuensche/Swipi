@@ -33,6 +33,9 @@ The app uses the following multiplatform dependencies in its implementation:
 ## How To Set Up
 
 Just open and run the app in Android Studio.
+Tested under Linux and macOS 15.6 with Android Studio Narwal
+
+
 
 ## Future Features
 
