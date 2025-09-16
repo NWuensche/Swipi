@@ -1,7 +1,6 @@
 package com.jetbrains.kmpapp
 
 import androidx.compose.ui.graphics.Color
-import coil3.network.R
 import kotlin.random.Random
 
 private val darkPurples by lazy {

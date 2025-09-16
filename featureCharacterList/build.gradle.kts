@@ -26,10 +26,8 @@ kotlin {
             implementation(libs.androidx.viewmodel.compose)
             implementation(libs.androidx.navigation.compose)
             implementation(libs.koin.androidx.compose)
-            implementation(libs.coil.compose)
             implementation(projects.designElements)
             implementation(projects.domain)
-            implementation(libs.coil.network.ktor)
         }
         commonMain.dependencies {
             implementation(compose.runtime)
