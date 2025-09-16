@@ -3,12 +3,17 @@ package com.jetbrains.kmpapp.di.mappers
 import com.jetbrains.kmpapp.di.absentToNull
 import com.jetbrains.kmpapp.di.entities.Character
 import com.jetbrains.kmpapp.di.entities.CharacterDetail
-import com.jetbrains.kmpapp.di.entities.MiscId.FilmId
-import com.jetbrains.kmpapp.di.entities.MiscId.SpeciesId
-import com.jetbrains.kmpapp.di.entities.MiscId.StarshipId
-import com.jetbrains.kmpapp.di.entities.MiscId.VehicleId
+import com.jetbrains.kmpapp.di.entities.Content
+import com.jetbrains.kmpapp.di.entities.ContentId.FilmId
+import com.jetbrains.kmpapp.di.entities.ContentId.SpeciesId
+import com.jetbrains.kmpapp.di.entities.ContentId.StarshipId
+import com.jetbrains.kmpapp.di.entities.ContentId.VehicleId
 import com.jetbrains.kmpapp.di.id
 import com.jetbrains.kmpapp.http.responseTypes.CharacterResponse
+import com.jetbrains.kmpapp.http.responseTypes.FilmResponse
+import com.jetbrains.kmpapp.http.responseTypes.SpeciesResponse
+import com.jetbrains.kmpapp.http.responseTypes.StarshipResponse
+import com.jetbrains.kmpapp.http.responseTypes.VehicleResponse
 
 
 //TODO Test
@@ -48,5 +53,45 @@ internal fun CharacterResponse.toCharacterDetail(): CharacterDetail {
         starshipIds = starshipUrls
             .map(String::id)
             .map(::StarshipId),
+    )
+}
+
+internal fun FilmResponse.toContent(): Content {
+    return Content(
+        name = this.title,
+        info1 = "Director: ${this.director}",
+        info2 = "Producer: ${this.producer}",
+        info3 = "Episode: ${this.episodeId}",
+        info4 = "Release: ${this.releaseDate}"
+    )
+}
+
+internal fun SpeciesResponse.toContent(): Content {
+    return Content(
+        name = this.name,
+        info1 = "Language: ${this.language}",
+        info2 = "Avg. Height: ${this.averageHeight}",
+        info3 = "Class: ${this.classification}",
+        info4 = "Designation: ${this.designation}"
+    )
+}
+
+internal fun VehicleResponse.toContent(): Content {
+    return Content(
+        name = this.name,
+        info1 = "Model: ${this.model}",
+        info2 = "Length: ${this.length}",
+        info3 = "Class: ${this.vehicleClass}",
+        info4 = "Producer: ${this.manufacturer}"
+    )
+}
+
+internal fun StarshipResponse.toContent(): Content {
+    return Content(
+        name = this.name,
+        info1 = "Model: ${this.model}",
+        info2 = "Length: ${this.length}",
+        info3 = "Class: ${this.starshipClass}",
+        info4 = "Producer: ${this.manufacturer}"
     )
 }

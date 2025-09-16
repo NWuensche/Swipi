@@ -38,11 +38,11 @@ data class CharacterDetail(
      */
     val gender: String?,
 
-    val filmIDs: List<MiscId.FilmId>,
+    val filmIDs: List<ContentId.FilmId>,
 
-    val speciesIds: List<MiscId.SpeciesId>,
+    val speciesIds: List<ContentId.SpeciesId>,
 
-    val starshipIds: List<MiscId.StarshipId>,
+    val starshipIds: List<ContentId.StarshipId>,
 
-    val vehicleIds: List<MiscId.VehicleId>,
+    val vehicleIds: List<ContentId.VehicleId>,
 )
