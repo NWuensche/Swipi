@@ -7,6 +7,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Scaffold
@@ -18,7 +20,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.jetbrains.kmpapp.cards.RandomDarkPurple
 import com.jetbrains.kmpapp.iconButtons.BackIconButton
 import com.jetbrains.kmpapp.images.Circle
 import com.jetbrains.kmpapp.images.CircleTab
@@ -50,7 +51,7 @@ fun CharacterDetailScreen(
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Circle(
-                            color = Color.RandomDarkPurple(characterId),
+                            color = Color.randomDarkPurple(characterId),
                             text = "C$characterId"
                         )
                         Text(characterDetail.name)
@@ -65,6 +66,7 @@ fun CharacterDetailScreen(
                 .padding(innerPadding)
                 .padding(horizontal = 16.dp)
                 .padding(top = 16.dp)
+                .verticalScroll(state = rememberScrollState())
         ) {
             LargeText("\uD83D\uDCC5 " + characterDetail.birthYear.toString())
             ItemSpacer()
@@ -77,25 +79,90 @@ fun CharacterDetailScreen(
             LargeText("\uD83D\uDC41 " + characterDetail.eyeColor.toString())
             ItemSpacer()
             LargeText("\uD83E\uDDD1\uD83C\uDFFE " + characterDetail.skinColor.toString())
-            HorizontalDivider(
-                modifier = Modifier
-                    .padding(vertical = 4.dp),
-                thickness = 2.dp
-            )
-            VeryLargeText("Films") //TODO Strings
 
-
-            LazyRow {
-                items(characterDetail.filmIDs) {
-                    CircleTab(
-                        color = Color.RandomDarkPurple(it.id), //TODO Different color
-                        title = "F${it.id}",
-                        text = "Film ${it.id}"
-                    ) {
-                        viewModel.onItemClicked(it)
+            if (characterDetail.filmIDs.isNotEmpty()) {
+                HorizontalDivider(
+                    modifier = Modifier
+                        .padding(vertical = 4.dp),
+                    thickness = 2.dp
+                )
+                VeryLargeText("Films") //TODO Strings
+                LazyRow {
+                    items(characterDetail.filmIDs) {
+                        CircleTab(
+                            color = Color.randomDarkGreen(it.id), //TODO Different color
+                            title = "F${it.id}",
+                            text = "Film ${it.id}"
+                        ) {
+                            viewModel.onItemClicked(it)
+                        }
                     }
                 }
             }
+
+
+            if (characterDetail.vehicleIds.isNotEmpty()) {
+                HorizontalDivider(
+                    modifier = Modifier
+                        .padding(vertical = 4.dp),
+                    thickness = 2.dp
+                )
+                VeryLargeText("Vehicles") //TODO Strings
+                LazyRow {
+                    items(characterDetail.vehicleIds) {
+                        CircleTab(
+                            color = Color.randomDarkRed(it.id), //TODO Different color
+                            title = "V${it.id}",
+                            text = "Vehicle ${it.id}"
+                        ) {
+                            viewModel.onItemClicked(it)
+                        }
+                    }
+                }
+            }
+
+
+            if (characterDetail.starshipIds.isNotEmpty()) {
+                HorizontalDivider(
+                    modifier = Modifier
+                        .padding(vertical = 4.dp),
+                    thickness = 2.dp
+                )
+                VeryLargeText("Starships") //TODO Strings
+                LazyRow {
+                    items(characterDetail.starshipIds) {
+                        CircleTab(
+                            color = Color.randomDarkGreen(it.id), //TODO Different color
+                            title = "SS${it.id}",
+                            text = "Starship ${it.id}"
+                        ) {
+                            viewModel.onItemClicked(it)
+                        }
+                    }
+                }
+            }
+
+
+            if (characterDetail.speciesIds.isNotEmpty()) {
+                HorizontalDivider(
+                    modifier = Modifier
+                        .padding(vertical = 4.dp),
+                    thickness = 2.dp
+                )
+                VeryLargeText("Species") //TODO Strings
+                LazyRow {
+                    items(characterDetail.speciesIds) {
+                        CircleTab(
+                            color = Color.randomDarkRed(it.id), //TODO Different color
+                            title = "S${it.id}",
+                            text = "Species ${it.id}"
+                        ) {
+                            viewModel.onItemClicked(it)
+                        }
+                    }
+                }
+            }
+
         }
     }
 }

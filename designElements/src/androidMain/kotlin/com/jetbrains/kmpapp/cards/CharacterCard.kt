@@ -6,23 +6,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import com.jetbrains.kmpapp.images.LargePortrait
+import com.jetbrains.kmpapp.randomDarkPurple
 import com.jetbrains.kmpapp.text.SFTitleText
 import com.jetbrains.kmpapp.text.StandardBodyText
 
-
-//TODO Move
-fun Color.Companion.RandomDarkPurple(id: Int): Color {
-    val i = id % 5
-
-    return when(i) {
-        0 -> Color(0xFF673AB7) //TODO Don't recompute all the time
-        1 -> Color(0xFF3916A4) //TODO Don't recompute all the time
-        2 -> Color(0xFF190E4F) //TODO Don't recompute all the time
-        3 -> Color(0xFF8A70EC) //TODO Don't recompute all the time
-        4 -> Color(0xFF483591) //TODO Don't recompute all the time
-        else -> TODO()
-    }
-}
 
 @Composable
 fun CharacterCard(
@@ -37,7 +24,7 @@ fun CharacterCard(
     ) {
 
         LargePortrait(
-            color = Color.RandomDarkPurple(id),
+            color = Color.randomDarkPurple(id),
             text = "C$id"
         )
 
