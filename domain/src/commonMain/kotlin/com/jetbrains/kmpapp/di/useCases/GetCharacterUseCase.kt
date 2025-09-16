@@ -6,12 +6,14 @@ import com.jetbrains.kmpapp.di.mappers.toCharacter
 import com.jetbrains.kmpapp.di.mappers.toCharacterDetail
 import com.jetbrains.kmpapp.http.IApiService
 import com.jetbrains.kmpapp.http.responseTypes.CharacterResponse
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 class GetCharacterUseCase(
     private val apiService: IApiService
-): UseCase<Int, CharacterDetail?> {
-    override suspend fun execute(input: Int): CharacterDetail? { //TODO Make main safe
-        return apiService
+) : UseCase<Int, CharacterDetail?> {
+    override suspend fun execute(input: Int): CharacterDetail? = withContext(Dispatchers.Default) {
+        apiService
             .getCharacter(id = input)
             ?.let(CharacterResponse::toCharacterDetail)
     }

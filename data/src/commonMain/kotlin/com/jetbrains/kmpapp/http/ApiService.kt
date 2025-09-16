@@ -20,7 +20,7 @@ internal class ApiService(
      * Page starts at 1
      */
     override suspend fun getCharactersPage(page: Int): List<CharacterResponse> {
-        return httpClient.get("$baseUrl/people?page=$page").body<CharacterPageResponse>().results //TODO Handle error
+        return httpClient.get("$baseUrl/people?page=$page").body<CharacterPageResponse>().results
     }
 
     override suspend fun getCharacter(id: Int): CharacterResponse? {

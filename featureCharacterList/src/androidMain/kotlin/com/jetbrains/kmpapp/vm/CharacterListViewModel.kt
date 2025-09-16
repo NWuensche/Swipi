@@ -19,7 +19,7 @@ class CharacterListViewModel(
         const val PAGE_SIZE = 1
     }
 
-    private var pagingSource = MyPagingSource(getCharacterPageUseCase)
+    private var pagingSource = CharacterPagingSource(getCharacterPageUseCase)
     val characterPagingDataFlow: Flow<PagingData<Character>>
 
     private val _isLoading = MutableStateFlow(true)
@@ -27,7 +27,7 @@ class CharacterListViewModel(
 
     init {
         val pager = Pager(PagingConfig(pageSize = PAGE_SIZE)) {
-            pagingSource = MyPagingSource(getCharacterPageUseCase)
+            pagingSource = CharacterPagingSource(getCharacterPageUseCase)
             pagingSource
         }
         characterPagingDataFlow = pager.flow

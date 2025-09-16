@@ -17,7 +17,6 @@ import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
-import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.pulltorefresh.PullToRefreshBox
 import androidx.compose.runtime.Composable
@@ -36,6 +35,8 @@ import com.jetbrains.kmpapp.iconButtons.BackIconButton
 import com.jetbrains.kmpapp.iconButtons.RefreshIconButton
 import com.jetbrains.kmpapp.images.Circle
 import com.jetbrains.kmpapp.images.CircleTab
+import com.jetbrains.kmpapp.states.BottomSheetState
+import com.jetbrains.kmpapp.states.CharacterDetailState
 import com.jetbrains.kmpapp.text.LargeText
 import com.jetbrains.kmpapp.text.SFTitleText
 import com.jetbrains.kmpapp.text.StandardBodyText
@@ -146,17 +147,17 @@ private fun CharacterContent(characterDetail: CharacterDetail, onItemClick: (id:
             .fillMaxSize()
             .verticalScroll(state = rememberScrollState())
     ) {
-        LargeText("\uD83D\uDCC5 " + characterDetail.birthYear.toString())
+        LargeText("\uD83D\uDCC5 " + characterDetail.birthYearText)
         ItemSpacer()
-        LargeText("\uD83D\uDCCF " + characterDetail.height.toString()) //TODO Update toString
+        LargeText("\uD83D\uDCCF " + characterDetail.heightText)
         ItemSpacer()
-        LargeText("⚖ " + characterDetail.mass.toString())
+        LargeText("⚖ " + characterDetail.massText)
         ItemSpacer()
-        LargeText("\uD83E\uDDB1 " + characterDetail.hairColor.toString())
+        LargeText("\uD83E\uDDB1 " + characterDetail.hairColorText)
         ItemSpacer()
-        LargeText("\uD83D\uDC41 " + characterDetail.eyeColor.toString())
+        LargeText("\uD83D\uDC41 " + characterDetail.eyeColorText)
         ItemSpacer()
-        LargeText("\uD83E\uDDD1\uD83C\uDFFE " + characterDetail.skinColor.toString())
+        LargeText("\uD83E\uDDD1\uD83C\uDFFE " + characterDetail.skinColorText)
 
         if (characterDetail.filmIDs.isNotEmpty()) {
             HorizontalDivider(
@@ -164,11 +165,11 @@ private fun CharacterContent(characterDetail: CharacterDetail, onItemClick: (id:
                     .padding(vertical = 4.dp),
                 thickness = 2.dp
             )
-            VeryLargeText("Films") //TODO Strings
+            VeryLargeText("Films")
             LazyRow {
                 items(characterDetail.filmIDs) {
                     CircleTab(
-                        color = Color.randomDarkGreen(it.id), //TODO Different color
+                        color = Color.randomDarkGreen(it.id),
                         title = "F${it.id}",
                         text = "Film ${it.id}",
                     ) {
@@ -185,11 +186,11 @@ private fun CharacterContent(characterDetail: CharacterDetail, onItemClick: (id:
                     .padding(vertical = 4.dp),
                 thickness = 2.dp
             )
-            VeryLargeText("Vehicles") //TODO Strings
+            VeryLargeText("Vehicles")
             LazyRow {
                 items(characterDetail.vehicleIds) {
                     CircleTab(
-                        color = Color.randomDarkRed(it.id), //TODO Different color
+                        color = Color.randomDarkRed(it.id),
                         title = "V${it.id}",
                         text = "Vehicle ${it.id}"
                     ) {
@@ -206,11 +207,11 @@ private fun CharacterContent(characterDetail: CharacterDetail, onItemClick: (id:
                     .padding(vertical = 4.dp),
                 thickness = 2.dp
             )
-            VeryLargeText("Starships") //TODO Strings
+            VeryLargeText("Starships")
             LazyRow {
                 items(characterDetail.starshipIds) {
                     CircleTab(
-                        color = Color.randomDarkGreen(it.id), //TODO Different color
+                        color = Color.randomDarkGreen(it.id),
                         title = "P${it.id}",
                         text = "Starship ${it.id}"
                     ) {
@@ -227,11 +228,11 @@ private fun CharacterContent(characterDetail: CharacterDetail, onItemClick: (id:
                     .padding(vertical = 4.dp),
                 thickness = 2.dp
             )
-            VeryLargeText("Species") //TODO Strings
+            VeryLargeText("Species")
             LazyRow {
                 items(characterDetail.speciesIds) {
                     CircleTab(
-                        color = Color.randomDarkRed(it.id), //TODO Different color
+                        color = Color.randomDarkRed(it.id),
                         title = "S${it.id}",
                         text = "Species ${it.id}"
                     ) {

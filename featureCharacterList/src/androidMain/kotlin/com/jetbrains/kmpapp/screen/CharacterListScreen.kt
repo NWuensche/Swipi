@@ -79,7 +79,7 @@ fun CharacterListScreen(
             TopAppBar(
                 title = {
                     Row(verticalAlignment = Alignment.CenterVertically) {
-                        Text("SWIPI") //TODO Use App name
+                        Text("SWIPI")
                         Spacer(modifier = Modifier.weight(1f))
                         RefreshIconButton(onClick = viewModel::reload)
                         InfoIconButton(onClick = onLicensesButtonPressed)
@@ -124,8 +124,8 @@ fun CharacterListScreen(
                         id = character.id,
                         titleFontFamily = sfFontFamily,
                         name = character.name,
-                        height = character.height ?: 0, //TODO
-                        birthYear = character.birthYear ?: "TODO"
+                        height = character.heightText,
+                        birthYear = character.birthYearText
                     )
                 }
         }

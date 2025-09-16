@@ -10,5 +10,5 @@ data class VehicleResponse(
     @SerialName("vehicle_class")
     val vehicleClass: String,
     val manufacturer: String,
-    val length: String //TODO To int
+    val length: String
 )

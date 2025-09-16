@@ -6,8 +6,10 @@ import com.jetbrains.kmpapp.http.responseTypes.SpeciesResponse
 import com.jetbrains.kmpapp.http.responseTypes.StarshipResponse
 import com.jetbrains.kmpapp.http.responseTypes.VehicleResponse
 
-//TODO Error handing just nullable?
 interface IApiService {
+    /**
+     * @return list of characters, or throws an exception if some error occurred
+     */
     suspend fun getCharactersPage(page: Int): List<CharacterResponse>
 
     /**

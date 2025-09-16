@@ -10,5 +10,5 @@ data class StarshipResponse(
     @SerialName("starship_class")
     val starshipClass: String,
     val manufacturer: String,
-    val length: String //TODO To int
+    val length: String
 )

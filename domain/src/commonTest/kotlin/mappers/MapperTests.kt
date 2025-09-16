@@ -32,8 +32,8 @@ class MapperTests {
             Character(
                 id = 1,
                 name = "C",
-                height = 123,
-                birthYear = "345 BYD"
+                heightText = 123,
+                birthYearText = "345 BYD"
             ),
             character
         )
@@ -63,8 +63,8 @@ class MapperTests {
             Character(
                 id = 1,
                 name = "C",
-                height = null,
-                birthYear = null
+                heightText = null,
+                birthYearText = null
             ),
             character
         )

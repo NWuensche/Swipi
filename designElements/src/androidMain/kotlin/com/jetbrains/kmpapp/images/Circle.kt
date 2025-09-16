@@ -25,7 +25,7 @@ fun Circle(color: Color, text: String) {
     Text(
         modifier = Modifier
             .padding(16.dp)
-            .size(16.dp) //TODO Center Text
+            .size(16.dp)
             .drawBehind {
                 drawCircle(
                     color = color,

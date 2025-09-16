@@ -10,7 +10,7 @@ class SwipiApp : Application() {
         super.onCreate()
         startKoin {
             modules(
-                featureCharacterListModule, //TODO Lazy
+                featureCharacterListModule,
                 featureCharacterDetailModule,
             )
         }

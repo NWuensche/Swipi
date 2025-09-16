@@ -10,5 +10,5 @@ data class SpeciesResponse(
     val designation: String,
     val language: String,
     @SerialName("average_height")
-    val averageHeight: String //TODO To int
+    val averageHeight: String
 )

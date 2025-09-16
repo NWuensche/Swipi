@@ -17,7 +17,7 @@ fun CharacterCard(
     id: Int,
     name: String,
     birthYear: String,
-    height: Int,
+    height: String,
     titleFontFamily: FontFamily,
     modifier: Modifier = Modifier
 ) {
@@ -33,7 +33,7 @@ fun CharacterCard(
         SFTitleText(font= titleFontFamily, name)
 
         StandardBodyText("\uD83D\uDCC5 $birthYear")
-        StandardBodyText("\uD83D\uDCCF $height") //TODO add cm
+        StandardBodyText("\uD83D\uDCCF $height")
     }
 }
 

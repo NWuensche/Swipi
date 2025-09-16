@@ -6,8 +6,10 @@ import com.jetbrains.kmpapp.di.entities.Character
 import com.jetbrains.kmpapp.di.useCases.GetCharacterPageUseCase
 
 
-// TODO COmment + Update other comments
-internal class MyPagingSource(
+/**
+ * Logic to load pages of characters
+ */
+internal class CharacterPagingSource(
     private val getCharacterPageUseCase: GetCharacterPageUseCase
 ) : PagingSource<Int, Character>() {
 
@@ -18,7 +20,7 @@ internal class MyPagingSource(
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Character> {
         val firstKey = params.key ?: STARTING_KEY // If null, then loading first time -> Start with STARTING_KEY
 
-        val pageNumbersToLoad = firstKey.until(firstKey + params.loadSize) //TODO Always from Startkey?
+        val pageNumbersToLoad = firstKey.until(firstKey + params.loadSize)
 
         val characters = try {
             pageNumbersToLoad.flatMap {
@@ -44,7 +46,8 @@ internal class MyPagingSource(
     }
 
     /**
-     * If Page is invalidated, load the closest one to the current anchor-position
+     * We don't use anchor because when we invalidate Paging, we want to start at the beginning again
+     * to show user all of the latest data
      */
     override fun getRefreshKey(state: PagingState<Int, Character>): Int? {
         return null

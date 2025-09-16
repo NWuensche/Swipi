@@ -16,13 +16,14 @@ import com.jetbrains.kmpapp.http.responseTypes.StarshipResponse
 import com.jetbrains.kmpapp.http.responseTypes.VehicleResponse
 
 
-//TODO Test
+private const val unknown = "Find out yourself!"
+
 internal fun CharacterResponse.toCharacter(): Character {
     return Character(
         id = url.id,
         name = name,
-        height = height.toIntOrNull(),
-        birthYear = birthYear.absentToNull()
+        heightText = height.toIntOrNull()?.let { "$it cm" } ?: unknown,
+        birthYearText = birthYear.absentToNull() ?: unknown
     )
 }
 
@@ -30,13 +31,13 @@ internal fun CharacterResponse.toCharacterDetail(): CharacterDetail {
     return CharacterDetail(
         id = url.id,
         name = name,
-        height = height.toIntOrNull(),
-        mass = mass.toIntOrNull(),
-        gender = gender.absentToNull(),
-        skinColor = skinColor.absentToNull(),
-        hairColor = hairColor.absentToNull(),
-        birthYear = birthYear.absentToNull(),
-        eyeColor = eyeColor.absentToNull(),
+        heightText = height.toIntOrNull()?.let { "$it cm" } ?: unknown,
+        massText = mass.toIntOrNull()?.let { "$it kg" } ?: unknown,
+        genderText = gender.absentToNull() ?: unknown,
+        skinColorText = skinColor.absentToNull() ?: unknown,
+        hairColorText = hairColor.absentToNull() ?: unknown,
+        birthYearText = birthYear.absentToNull() ?: unknown,
+        eyeColorText = eyeColor.absentToNull() ?: unknown,
         filmIDs = filmUrls
             .map(String::id)
             .map(::FilmId),

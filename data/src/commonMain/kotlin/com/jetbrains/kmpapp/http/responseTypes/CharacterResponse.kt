@@ -42,7 +42,7 @@ data class CharacterResponse(
 
 
     @SerialName("birth_year")
-    val birthYear: String, //TODO Check is unknown - Small joke like "find out yourself"
+    val birthYear: String,
 
     @SerialName("films")
     val filmUrls: List<SwapiUrl>,

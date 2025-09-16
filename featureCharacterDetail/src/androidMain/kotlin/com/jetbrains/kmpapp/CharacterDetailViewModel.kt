@@ -7,41 +7,25 @@ import com.jetbrains.kmpapp.di.entities.Content
 import com.jetbrains.kmpapp.di.entities.ContentId
 import com.jetbrains.kmpapp.di.useCases.GetCharacterUseCase
 import com.jetbrains.kmpapp.di.useCases.GetContentUseCase
+import com.jetbrains.kmpapp.states.BottomSheetState
+import com.jetbrains.kmpapp.states.CharacterDetailState
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-
-//TODO Move
-sealed interface BottomSheetState {
-    object Loading: BottomSheetState
-    object Error: BottomSheetState
-    data class ContentView(
-        val content: Content
-    ): BottomSheetState
-}
-
-sealed interface CharacterDetailState {
-    object Loading: CharacterDetailState
-    object Error: CharacterDetailState
-    data class CharacterDetailView(
-        val characterDetail: CharacterDetail
-    ): CharacterDetailState
-}
 
 class CharacterDetailViewModel(
     private val characterId: Int,
     private val getCharacterUseCase: GetCharacterUseCase,
     private val getContentUseCase: GetContentUseCase
 ): ViewModel() {
-    //TODO private
     private val _characterDetailState = MutableStateFlow<CharacterDetailState>(CharacterDetailState.Loading)
     val characterDetailState: StateFlow<CharacterDetailState> = _characterDetailState
 
     private val _bottomSheetState = MutableStateFlow<BottomSheetState?>(null)
 
     /**
-     * null means bottom sheet is dismissed
+     * null means bottom sheet is not visible
      */
     val bottomSheetState: StateFlow<BottomSheetState?> = _bottomSheetState
 
