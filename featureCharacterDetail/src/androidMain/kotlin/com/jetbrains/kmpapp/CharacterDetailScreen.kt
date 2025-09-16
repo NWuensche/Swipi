@@ -149,7 +149,7 @@ fun CharacterDetailScreen(
                     items(characterDetail.starshipIds) {
                         CircleTab(
                             color = Color.randomDarkGreen(it.id), //TODO Different color
-                            title = "SS${it.id}",
+                            title = "P${it.id}",
                             text = "Starship ${it.id}"
                         ) {
                             viewModel.onItemClicked(it)

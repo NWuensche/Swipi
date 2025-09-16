@@ -34,6 +34,10 @@ kotlin {
             implementation(projects.data)
         }
 
+        commonTest.dependencies {
+            implementation(libs.bundles.test.multiplatform)
+        }
+
         // Required by KMM-ViewModel
         all {
             languageSettings.optIn("kotlinx.cinterop.ExperimentalForeignApi")
