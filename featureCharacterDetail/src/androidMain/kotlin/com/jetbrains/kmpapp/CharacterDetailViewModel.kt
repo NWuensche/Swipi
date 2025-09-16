@@ -7,6 +7,7 @@ import com.jetbrains.kmpapp.di.entities.Content
 import com.jetbrains.kmpapp.di.entities.ContentId
 import com.jetbrains.kmpapp.di.useCases.GetCharacterUseCase
 import com.jetbrains.kmpapp.di.useCases.GetContentUseCase
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -41,10 +42,19 @@ class CharacterDetailViewModel(
         }
     }
 
+    /**
+     * Control load content job in case user dismisses loading
+     */
+    private var contentLoadJob: Job? = null
+        set(value) {
+            field?.cancel()
+            field = value
+        }
+
     fun onItemClicked(id: ContentId) {
         _bottomSheetState.value = BottomSheetState.Loading
 
-        viewModelScope.launch {
+        contentLoadJob = viewModelScope.launch {
             val content = getContentUseCase.execute(id)
 
             _bottomSheetState.value = content?.let(BottomSheetState::ContentView)
@@ -53,6 +63,7 @@ class CharacterDetailViewModel(
     }
 
     fun onBottomSheetDismiss() {
+        contentLoadJob = null
         _bottomSheetState.value = null
     }
 }
