@@ -10,7 +10,10 @@ import androidx.compose.ui.tooling.preview.Preview
 @Composable
 fun InfoIconButton(onClick: () -> Unit) {
     IconButton(onClick = onClick) {
-        Icon(imageVector = Icons.Default.Info, contentDescription = "About")
+        Icon(
+            imageVector = Icons.Default.Info,
+            contentDescription = "Info"
+        )
     }
 }
 

@@ -1,5 +1,8 @@
 package com.jetbrains.kmpapp.di.entities
 
+/**
+ * "stuff" a character has
+ */
 data class Content(
     val name: String,
     val info1: String,

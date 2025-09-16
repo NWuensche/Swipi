@@ -6,7 +6,6 @@ import com.jetbrains.kmpapp.http.responseTypes.CharacterResponse
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
-//TODO Run in the end
 class MapperTests {
     @Test
     fun `character response to character without missing values works`() {

@@ -34,7 +34,7 @@ internal class ApiService(
     override suspend fun getFilm(id: Int): FilmResponse? {
         return try {
             httpClient.get("$baseUrl/films/$id").body()
-        } catch (e: Exception) {
+        } catch (_: Exception) {
             null
         }
     }

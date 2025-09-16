@@ -10,7 +10,10 @@ import androidx.compose.ui.tooling.preview.Preview
 @Composable
 fun RefreshIconButton(onClick: () -> Unit) {
     IconButton(onClick = onClick) {
-        Icon(imageVector = Icons.Default.Refresh, contentDescription = "About")
+        Icon(
+            imageVector = Icons.Default.Refresh,
+            contentDescription = "Refresh"
+        )
     }
 }
 
