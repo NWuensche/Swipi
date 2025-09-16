@@ -2,20 +2,21 @@ package com.jetbrains.kmpapp.iconButtons
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Info
+import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 
 @Composable
-fun InfoIconButton(onClick: () -> Unit) {
+fun RefreshIconButton(onClick: () -> Unit) {
     IconButton(onClick = onClick) {
-        Icon(imageVector = Icons.Default.Info, contentDescription = "About")
+        Icon(imageVector = Icons.Default.Refresh, contentDescription = "About")
     }
 }
 
 @Preview
 @Composable
 private fun Preview() {
-    InfoIconButton {  }
+    RefreshIconButton {  }
 }

@@ -14,22 +14,37 @@ import androidx.compose.foundation.pager.PageSize
 import androidx.compose.foundation.pager.PagerDefaults
 import androidx.compose.foundation.pager.PagerSnapDistance
 import androidx.compose.foundation.pager.rememberPagerState
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.pulltorefresh.PullToRefreshBox
+import androidx.compose.material3.pulltorefresh.pullToRefresh
+import androidx.compose.material3.pulltorefresh.rememberPullToRefreshState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Density
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.jetbrains.kmpapp.cards.CharacterCard
 import com.jetbrains.kmpapp.iconButtons.InfoIconButton
+import com.jetbrains.kmpapp.iconButtons.RefreshIconButton
 import com.jetbrains.kmpapp.vm.CharacterListViewModel
+import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
 
 
@@ -41,8 +56,30 @@ fun CharacterListScreen(
     onLicensesButtonPressed: () -> Unit,
     viewModel: CharacterListViewModel = koinViewModel()
 ) {
+    val scope = rememberCoroutineScope()
+    val snackbarHostState = remember { SnackbarHostState() }
 
     val characterList = viewModel.characterPagingDataFlow.collectAsLazyPagingItems()
+    val loadingState = characterList.loadState.refresh
+    val loadingAppendState = characterList.loadState.append
+    val isLoading by viewModel.isLoading.collectAsStateWithLifecycle()
+
+    //Show error when paging has error
+    LaunchedEffect(loadingState, loadingAppendState) {
+        if (loadingState is LoadState.Error || loadingAppendState is LoadState.Error) {
+            scope.launch {
+                snackbarHostState.showSnackbar("Error loading the characters. Reload the screen!")
+            }
+        }
+    }
+
+    // Stop Pull to refresh when first load done
+    LaunchedEffect(loadingState) {
+        if (loadingState !is LoadState.Loading) {
+            viewModel.firstLoadFinished()
+        }
+    }
+
 
     Scaffold(
         topBar = {
@@ -51,10 +88,14 @@ fun CharacterListScreen(
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         Text("SWIPI") //TODO Use App name
                         Spacer(modifier = Modifier.weight(1f))
+                        RefreshIconButton(onClick = {viewModel.reload()})
                         InfoIconButton(onClick = onLicensesButtonPressed)
                     }
                 }
             )
+        },
+        snackbarHost = {
+            SnackbarHost(hostState = snackbarHostState)
         }
     ) { innerPadding ->
         val pagerState = rememberPagerState(pageCount = {
@@ -65,10 +106,12 @@ fun CharacterListScreen(
             pagerSnapDistance = PagerSnapDistance.atMost(5)
         )
 
-        Box(
-          modifier =  Modifier
-              .padding(innerPadding)
-              .fillMaxSize()
+        PullToRefreshBox(
+            modifier =  Modifier
+                .padding(innerPadding)
+                .fillMaxSize(),
+            isRefreshing = isLoading,
+            onRefresh = {}
         ) {
             HorizontalPager(
                 modifier = Modifier.align(Alignment.Center), //Need box for align to be available

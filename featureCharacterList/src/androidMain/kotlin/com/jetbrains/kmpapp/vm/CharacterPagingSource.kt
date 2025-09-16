@@ -20,17 +20,23 @@ internal class MyPagingSource(
 
         val pageNumbersToLoad = firstKey.until(firstKey + params.loadSize) //TODO Always from Startkey?
 
-        val characters = pageNumbersToLoad.flatMap {
-            getCharacterPageUseCase.execute(it)
+        val characters = try {
+            pageNumbersToLoad.flatMap {
+                getCharacterPageUseCase.execute(it)
+            }
+        } catch(e: Exception) {
+            return LoadResult.Error(e)
         }
+
 
         return LoadResult.Page(
             data = characters,
             prevKey = when (firstKey) {
                 STARTING_KEY -> null
-                else -> when (val prevKey = ensureValidKey(key = pageNumbersToLoad.first - params.loadSize)) {
-                    STARTING_KEY -> null //No key before STARTING_KEY
-                    else -> prevKey
+                else -> if (firstKey <= STARTING_KEY) {
+                    null
+                } else {
+                    firstKey - 1
                 }
             },
             nextKey = pageNumbersToLoad.last + 1
@@ -41,13 +47,7 @@ internal class MyPagingSource(
      * If Page is invalidated, load the closest one to the current anchor-position
      */
     override fun getRefreshKey(state: PagingState<Int, Character>): Int? {
-        val anchorPosition = state.anchorPosition ?: return null
-        val item = state.closestItemToPosition(anchorPosition) ?: return null
-        return ensureValidKey(key = item.id - (state.config.pageSize / 2))
+        return null
     }
 
-    /**
-     * Makes sure the paging key is never less than [STARTING_KEY]
-     */
-    private fun ensureValidKey(key: Int) = key.coerceAtLeast(STARTING_KEY)
 }
