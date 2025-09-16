@@ -1,7 +1,10 @@
 package com.jetbrains.kmpapp.images
 
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.MaterialTheme
@@ -27,6 +30,7 @@ fun CircleTab(color: Color, title: String, text: String, onClick: () -> Unit) {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         GradientCircle(color, title)
+        Spacer(modifier = Modifier.height(8.dp))
         Text(text)
     }
 }
@@ -35,24 +39,30 @@ fun CircleTab(color: Color, title: String, text: String, onClick: () -> Unit) {
 private fun GradientCircle(color: Color, text: String) {
 
     val brush = Brush.linearGradient(listOf(color, Color.Black))
-    Text(
+
+    Box(
         modifier = Modifier
-            .padding(32.dp)
-            .size(32.dp) //TODO Center Text
+            .padding(horizontal = 16.dp)
+            .size(64.dp) // This is the total size of the circle
             .drawBehind {
+                val radius = size.minDimension / 2
                 drawCircle(
                     brush = brush,
-                    radius = this.size.maxDimension - 8
+                    radius = radius - 4.dp.toPx()
                 )
                 drawCircle(
                     color = Color.White,
                     style = Stroke(width = 4f),
-                    radius = this.size.maxDimension
+                    radius = radius
                 )
             },
-        textAlign = TextAlign.Center,
-        text = text
-    )
+        contentAlignment = Alignment.Center
+    ) {
+        Text(
+            text = text,
+            textAlign = TextAlign.Center
+        )
+    }
 }
 
 @Preview
