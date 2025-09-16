@@ -1,32 +1,38 @@
-# Kotlin Multiplatform app template
+# SWIPI - Android App build on SWAPI-API
 
-[![official project](http://jb.gg/badges/official.svg)](https://confluence.jetbrains.com/display/ALL/JetBrains+on+GitHub)
-[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+Thanks for checking out SWIPI (Swipe-pee). It's a KMP Android app built upon the SWAPI Star Wars API.
 
-This is a basic Kotlin Multiplatform app template for Android and iOS. It includes shared business logic and data handling, and native UI implementations using Jetpack Compose and SwiftUI.
+SWIPI is grouping the data by characters. You can swipe through them (hence the name) and see all available information about these characters.
 
-> The template is also available [with shared UI written in Compose Multiplatform](https://github.com/kotlin/KMP-App-Template).
->
-> The [`amper` branch](https://github.com/Kotlin/KMP-App-Template-Native/tree/amper) showcases the same project configured with [Amper](https://github.com/JetBrains/amper).
+By compiling and running this app, you accept to send your IP to https://swapi.py4e.com/ .
 
-![Screenshots of the app](images/screenshots.png)
+Shoutouts to ShyFoundry for the great SF Distant Galaxy font: https://www.fontspace.com/sf-distant-galaxy-font-f6436 .
 
-### Technologies
+The app is build upon the official [KMP App Templative Native](https://github.com/Kotlin/KMP-App-Template-Native) template.
 
-The data displayed by the app is from [The Metropolitan Museum of Art Collection API](https://metmuseum.github.io/).
+
+## Technologies
+
+This Android app is using KMM for its business logic and native Jetpack Compose for the Android UI
 
 The app uses the following multiplatform dependencies in its implementation:
 
 - [Ktor](https://ktor.io/) for networking
 - [kotlinx.serialization](https://github.com/Kotlin/kotlinx.serialization) for JSON handling
 - [Koin](https://github.com/InsertKoinIO/koin) for dependency injection
-- [KMP-ObservableViewModel](https://github.com/rickclephas/KMP-ObservableViewModel) for shared ViewModel implementations in common code
-- [KMP-NativeCoroutines](https://github.com/rickclephas/KMP-NativeCoroutines)
+- [Coroutines](https://github.com/Kotlin/kotlinx.coroutines) for asynchronous programming
+- [Jetpack Compose](https://developer.android.com/jetpack/compose) for UI
+- [Navigation component](https://developer.android.com/jetpack/compose/navigation) for UI navigation
+- [kotlin.test](https://kotlinlang.org/api/core/kotlin-test/) for Unit Tests
 
-> These are just some of the possible libraries to use for these tasks with Kotlin Multiplatform, and their usage here isn't a strong recommendation for these specific libraries over the available alternatives. You can find a wide variety of curated multiplatform libraries in the [kmp-awesome](https://github.com/terrakok/kmp-awesome) repository.
+## How To Set Up
 
-And the following Android-specific dependencies:
+Just open and run the app in Android Studio.
 
-- [Jetpack Compose](https://developer.android.com/jetpack/compose)
-- [Navigation component](https://developer.android.com/jetpack/compose/navigation)
-- [Coil](https://github.com/coil-kt/coil) for image loading
+## Future Features
+
+* More UI/Unit tests
+* Search and filter characters
+* Download your favourite characters to check them offline
+* Cross-Reference Movies/Vehicles/... to see their connections
+* Putting all text in a single strings.xml and adding more languages
