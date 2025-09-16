@@ -27,8 +27,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.Density
+import androidx.compose.ui.util.lerp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
@@ -38,7 +40,7 @@ import com.jetbrains.kmpapp.iconButtons.RefreshIconButton
 import com.jetbrains.kmpapp.vm.CharacterListViewModel
 import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
-
+import kotlin.math.absoluteValue
 
 
 @OptIn(ExperimentalMaterial3Api::class) //Needed for TopAppBar
@@ -100,7 +102,7 @@ fun CharacterListScreen(
         )
 
         PullToRefreshBox(
-            modifier =  Modifier
+            modifier = Modifier
                 .padding(innerPadding)
                 .fillMaxSize(),
             isRefreshing = isLoading,
@@ -111,23 +113,37 @@ fun CharacterListScreen(
                 state = pagerState,
                 flingBehavior = fling,
                 snapPosition = SnapPosition.Center,
-                pageSize =  threePagesPerViewport
-                ) { i ->
+                pageSize = threePagesPerViewport
+            ) { i ->
                 val character = characterList[i] ?: return@HorizontalPager
-                    CharacterCard(
-                        modifier = Modifier
-                            .fillMaxHeight(0.6f)
-                            .fillMaxWidth(fraction = 0.9f) //Show other pages instead of the buttons to show swipe
-                            .clickable {
-                                navigateToCharacter(character.id)
-                            },
-                        id = character.id,
-                        titleFontFamily = sfFontFamily,
-                        name = character.name,
-                        height = character.heightText,
-                        birthYear = character.birthYearText
-                    )
-                }
+                CharacterCard(
+                    modifier = Modifier
+                        .fillMaxHeight(0.6f)
+                        .fillMaxWidth(fraction = 0.9f) //Show other pages instead of the buttons to show swipe
+                        .clickable {
+                            navigateToCharacter(character.id)
+                        }
+                        .graphicsLayer { //Effect taken from https://developer.android.com/develop/ui/compose/layouts/pager#scroll-effects
+                            // Calculate distance from page to snapped position
+                            val pageOffset = (
+                                    (pagerState.currentPage - i) +
+                                            pagerState.currentPageOffsetFraction
+                                    ).absoluteValue
+
+                            // Change alpha to have background effect
+                            alpha = lerp(
+                                start = 0.3f,
+                                stop = 0.7f,
+                                fraction = 1f - pageOffset.coerceIn(0f, 1f)
+                            )
+                        },
+                    id = character.id,
+                    titleFontFamily = sfFontFamily,
+                    name = character.name,
+                    height = character.heightText,
+                    birthYear = character.birthYearText
+                )
+            }
         }
 
 
