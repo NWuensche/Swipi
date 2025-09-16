@@ -18,7 +18,7 @@ https://github.com/user-attachments/assets/cd6c5d7c-eee1-49e3-bfd7-e5bf477d6981
 
 ## Technologies
 
-This Android app is using KMP for its business logic and native Jetpack Compose for the Android UI
+This Android app is using KMP for its business logic and native Jetpack Compose for the Android UI. It is optimized for the portrait mode on a Google Pixel 8a.
 
 The app uses the following multiplatform dependencies in its implementation:
 
@@ -40,6 +40,7 @@ Tested under Linux and macOS 15.6 with Android Studio Narwal
 ## Future Features
 
 * More UI/Unit tests
+* Take more device sizes/types into account
 * Search and filter characters
 * Download your favourite characters to check them offline
 * Cross-Reference Movies/Vehicles/... to see their connections
